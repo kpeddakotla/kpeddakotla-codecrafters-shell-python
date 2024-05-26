@@ -43,6 +43,7 @@ def main():
                 if not found:
                     command = ans[4:].strip()
                     sys.stdout.write(f"{command}: command not found")
+                    break
 
 if __name__ == "__main__":
     main()
