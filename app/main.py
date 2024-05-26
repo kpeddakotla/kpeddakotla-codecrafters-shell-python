@@ -14,8 +14,7 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
         
-        ans = input()
-        if ans:
+        if ans := input():
             if ans == "exit 0":
                 sys.exit(0)
             else:
