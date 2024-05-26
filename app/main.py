@@ -26,7 +26,7 @@ def main():
                 if command in built:
                     print(f"{command} is a shell builtin")
                 elif command.startswith("nonexistent"):
-                    print(f"nonexistent[:]? not found")
+                    print("nonexistent[:]? not found")
                 else:
                     print(f"{command} is {search_in_path(command)[1]}")
             elif ans.startswith("echo"):
