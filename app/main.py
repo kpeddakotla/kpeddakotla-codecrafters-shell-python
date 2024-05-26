@@ -11,9 +11,13 @@ def main():
 
     # Wait for user input
     while True:
-        ans = input()
-        print(f"{ans}: command not found")
         sys.stdout.write("$ ")
+        sys.stdout.flush()
+        ans = input()
+        if ans == "exit 0":
+                sys.exit(0)
+        else:
+            print(f"{ans}: command not found")
 
 
 
