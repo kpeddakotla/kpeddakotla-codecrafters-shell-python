@@ -1,49 +1,43 @@
 import sys
 import os
-
-
-def search_in_path(program):
-    path = os.environ.get("PATH", "")
-    if path:
-        for location in path.split(":"):
-            if os.path.isdir(location):
-                if program in os.listdir(location):
-                    return True, os.path.join(location, program)
-    return False, ""
-
 def main():
-    
-    built = ["echo", "exit", "type"]
+    known_cmd = {"echo", "exit", "type"}
+    paths = os.getenv("PATH").split(":")
     while True:
         sys.stdout.write("$ ")
-        sys.stdout.flush()
-
-        if ans := input().strip():
-            if ans == "exit 0":
-                sys.exit(0)
-            elif ans.startswith("type"):
-                command = ans[4:].strip()
-                if command in built:
-                    print(f"{command} is a shell builtin")
-                    continue
-                elif search_in_path(command)[0]:
-                    print(f"{command} is {search_in_path(command)[1]}")
-                    continue
-                else:
-                    print(f"{command} not found")
-            elif ans.startswith("echo"):
-                print(ans[4:])
+        command = input()
+        command_args = command.split()
+        if command.startswith("type"):
+            newkey = command[5:]
+            newkey = command_args[1]
+            if newkey in known_cmd:
+                print(f"{newkey} is a shell builtin")
             else:
-                found = False
-                command_args = ans.split(" ")
-
-                if os.path.exists(f"{ans[0]}"):
-                    os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
-                    found = True
-                if not found:
-                    command = ans[4:].strip()
-                    sys.stdout.write(f"{command}: command not found\n")
-                    break
-
+                found_cmd = False
+                for path in paths:
+                    abs_path = os.path.join(path, newkey)
+                    if os.path.exists(abs_path):
+                        print(f"{newkey} is {abs_path}")
+                        found_cmd = True
+                        break
+                if not found_cmd:
+                    print(f"{newkey} not found")
+        elif command.startswith("echo"):
+            print(command[5:])
+            print(" ".join(command_args[1:]))
+        elif command.lower() == "exit 0":
+            break
+        else:
+            try:
+                print(f"{command}: command not found")
+            except Exception as e:
+                print(f"Error: {e}")
+            found = False
+            if os.path.exists(command_args[0]):
+                os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
+                found = True
+            if not found:
+                print(f"{command_args[0]}: command not found")
+        sys.stdout.flush()
 if __name__ == "__main__":
     main()
