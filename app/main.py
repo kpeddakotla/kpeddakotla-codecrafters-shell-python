@@ -1,19 +1,19 @@
 import sys
 import os
 
-
 def search_in_path(program):
     path = os.environ.get("PATH", "")
     if path:
         for location in path.split(":"):
             if os.path.isdir(location):
                 if program in os.listdir(location):
-                    return True, os.path.join(location, program)
+                    program_path = os.path.join(location, program)
+                    if os.access(program_path, os.X_OK):
+                        return True, program_path
     return False, ""
 
 def main():
-    
-    built = ["echo", "exit", "type"]
+    builtins = ["echo", "exit", "type"]
     while True:
         sys.stdout.write("$ ")
         sys.stdout.flush()
@@ -21,28 +21,20 @@ def main():
         if ans := input().strip():
             if ans == "exit 0":
                 sys.exit(0)
-            elif ans.startswith("type"):
-                command = ans[4:].strip()
-                if command in built:
-                    print(f"{command} is a shell builtin")
-                    continue
-                elif search_in_path(command)[0]:
-                    print(f"{command} is {search_in_path(command)[1]}")
-                    continue
+            elif ans.startswith("type "):
+                command = ans[5:].strip()
+                if command in builtins:
+                    sys.stdout.write(f"{command} is a shell builtin\n")
                 else:
-                    print(f"{command} not found")
-            elif ans.startswith("echo"):
-                print(ans[4:])
+                    found, command_path = search_in_path(command)
+                    if found:
+                        sys.stdout.write(f"{command} is {command_path}\n")
+                    else:
+                        sys.stdout.write(f"{command}: command not found\n")
+            elif ans.startswith("echo "):
+                sys.stdout.write(f"{ans[5:]}\n")
             else:
-                found = False
-                command_args = ans.split(" ")
-
-                if os.path.exists(f"{ans[0]}"):
-                    os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
-                    found = True
-                if not found:
-                    command = ans[4:].strip()
-                    sys.stdout.write(f"{command}: command not found\n")
+                sys.stdout.write(f"{ans}: command not found\n")
 
 if __name__ == "__main__":
     main()
