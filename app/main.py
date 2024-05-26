@@ -37,7 +37,8 @@ def main():
                     os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
                 else:
                     commans = ans[4:].strip()
-                    print(f"{commans}: command not found")
+                    string = (f"{commans}: command not found").replace('\r\n', '\n')
+                    print(string)
 
 if __name__ == "__main__":
     main()
