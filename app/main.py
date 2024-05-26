@@ -10,7 +10,9 @@ def main():
     sys.stdout.flush()
 
     # Wait for user input
-    input()
+    ans = input()
+    print(f"{ans}: Command not found")
+    
 
 
 if __name__ == "__main__":
