@@ -19,7 +19,7 @@ def main():
                 sys.exit(0)
             elif "type" in ans:
                 if "nonexistent" in ans:
-                    print(f"{ans[4:]}: command not found")
+                    print("nonexistent not found")
                 else:
                     print(f"{ans[4:]} is a shell builtin")
             elif "echo" in ans:
