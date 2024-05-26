@@ -12,7 +12,7 @@ def main():
     # Wait for user input
     while True:
         ans = input()
-        print(f"{ans}: command not found\n")
+        print(f"{ans}: command not found")
         sys.stdout.write("$ ")
 
 
