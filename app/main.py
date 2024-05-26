@@ -13,11 +13,13 @@ def main():
     while True:
         sys.stdout.write("$ ")
         sys.stdout.flush()
+        
         ans = input()
-        if ans == "exit 0":
+        if ans:
+            if ans == "exit 0":
                 sys.exit(0)
-        else:
-            print(f"{ans}: command not found")
+            else:
+                print(f"{ans}: command not found")
 
 
 
