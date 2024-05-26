@@ -1,7 +1,7 @@
 import sys
 import os
 
-def find_command_in_path(self, command):
+def find_command_in_path(command):
         path_dirs = os.environ.get("PATH", "").split(os.pathsep)
         for dir in path_dirs:
             potential_path = os.path.join(dir, command)
