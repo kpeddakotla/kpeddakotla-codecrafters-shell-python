@@ -42,9 +42,9 @@ def main():
                     found = True
                 if not found:
                     command = ans[4:].strip()
-                    output = f"{command}: command not found"
+                    output = f"{command}: command not found\n"
                     output = output.replace('\r', '')    
-                    sys.stdout.write(output, "\n")
+                    sys.stdout.write(output)
 
 
 if __name__ == "__main__":
