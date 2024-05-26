@@ -41,6 +41,7 @@ def main():
                     os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
                     found = True
                 if not found:
+                    sys.stdout.flush()
                     command = ans[4:].strip()
                     output = f"{command}: command not found\n"
                     output = output.replace('\r', '')    
