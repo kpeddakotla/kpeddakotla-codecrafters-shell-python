@@ -28,10 +28,10 @@ def main():
             elif "type" in ans:
                 if "nonexistent" in ans:
                     print(f"{ans[4:]} not found")
-                elif "echo" or "exit" in ans[4:]:
-                    print(f"{ans[4:]} is a shell builtin")
                 elif command_path := find_command_in_path(ans):
                     print(f"{ans} is {command_path}")
+                elif "echo" or "exit" in ans[4:]:
+                    print(f"{ans[4:]} is a shell builtin")
             elif "echo" in ans:
                 print(f"{ans[4:]}")
             else:
