@@ -30,8 +30,9 @@ def main():
                     print(f"{ans[4:]} not found")
                 elif ans[4:] in built:
                     print(f"{ans} is a shell builtin")
-                elif command_path := find_command_in_path(ans):
-                    print(f"{ans} is {command_path}")
+                else:
+                    command_path = find_command_in_path(ans[4:])
+                    print(f"{ans[4:]} is {command_path}")
             elif "echo" in ans:
                 print(f"{ans[4:]}")
             else:
