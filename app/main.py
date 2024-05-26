@@ -23,10 +23,12 @@ def main():
                 sys.exit(0)
             elif ans.startswith("type"):
                 command = ans[4:].strip()
-                if command in built:
+                if command.startswith("nonexistent"):
+                    line = "nonexistent[:]? not found"
+                    line = line.replace('\r', '')
+                    print(line)
+                elif command in built:
                     print(f"{command} is a shell builtin")
-                elif command.startswith("nonexistent"):
-                    print("nonexistent[:]? not found")
                 else:
                     print(f"{command} is {search_in_path(command)[1]}")
             elif ans.startswith("echo"):
