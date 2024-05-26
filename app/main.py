@@ -17,7 +17,7 @@ def main():
         if ans := input().strip():
             if ans == "exit 0":
                 sys.exit(0)
-            elif ans == "echo":
+            elif "echo" in ans:
                 print(f"{ans[1]}")
             else:
                 print(f"{ans}: command not found")
