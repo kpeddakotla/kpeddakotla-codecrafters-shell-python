@@ -21,7 +21,7 @@ def main():
         if ans := input().strip():
             if ans == "exit 0":
                 sys.exit(0)
-            elif ans.find("inv") == -1:
+            elif ans.find("inv"):
                 command = ans[4:].strip()
                 print(f"{command} not found")
             elif ans.startswith("type"):
