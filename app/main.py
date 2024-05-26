@@ -10,8 +10,9 @@ def main():
     sys.stdout.flush()
 
     # Wait for user input
-    ans = input()
-    print(f"{ans}: command not found\n")
+    while True:
+        ans = input()
+        print(f"{ans}: command not found\n")
     
 
 
