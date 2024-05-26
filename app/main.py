@@ -11,7 +11,7 @@ def main():
 
     # Wait for user input
     ans = input()
-    print(f"{ans}: Command not found")
+    print(f"{ans}: command not found\n")
     
 
 
