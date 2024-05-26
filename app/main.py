@@ -14,9 +14,11 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
         
-        if ans := input():
+        if ans := input().strip():
             if ans == "exit 0":
                 sys.exit(0)
+            elif ans == "echo":
+                print(f"{ans[1]}")
             else:
                 print(f"{ans}: command not found")
 
