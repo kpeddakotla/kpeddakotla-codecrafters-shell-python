@@ -36,7 +36,7 @@ def main():
                 if os.path.exists(f"{ans[0]}"):
                     os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
                 else:
-                    sys.stdout.write(f"{ans[4:]}: command not found".strip())
+                    sys.stdout.write(f"{ans[4:].strip()}: command not found\n")
                     print("\n")
 
 if __name__ == "__main__":
