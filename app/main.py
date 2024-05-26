@@ -17,6 +17,8 @@ def main():
         if ans := input().strip():
             if ans == "exit 0":
                 sys.exit(0)
+            elif "type" in ans:
+                print(f"{ans[4:]} is a shell builtin")
             elif "echo" in ans:
                 print(f"{ans[4:]}")
             else:
