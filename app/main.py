@@ -18,7 +18,7 @@ def main():
             if ans == "exit 0":
                 sys.exit(0)
             elif "echo" in ans:
-                print(f"{ans[1]}")
+                print(f"{ans[4:]}")
             else:
                 print(f"{ans}: command not found")
 
