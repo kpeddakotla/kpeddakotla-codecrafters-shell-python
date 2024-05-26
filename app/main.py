@@ -26,9 +26,7 @@ def main():
                 if command in built:
                     print(f"{command} is a shell builtin")
                 else:
-                    print(f"{command} is {search_in_path(command)[1]}\n")
-                    sys.stdout.write("$ ")
-                    sys.stdout.flush()
+                    print(f"{command} is {search_in_path(command)[1]}")
             elif ans.startswith("echo"):
                 print(ans[4:])
             else:
