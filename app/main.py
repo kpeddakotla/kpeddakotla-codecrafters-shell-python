@@ -1,4 +1,15 @@
 import sys
+import os
+
+
+def search_in_path(program):
+    path = os.environ.get("PATH", "")
+    if path:
+        for location in path.split(":"):
+            if os.path.isdir(location):
+                if program in os.listdir(location):
+                    return True, os.path.join(location, program)
+    return False, ""
 
 def main():
     
@@ -15,7 +26,7 @@ def main():
                 if command in built:
                     print(f"{command} is a shell builtin")
                 else:
-                    print(f"/usr/local/{command}")
+                    print(f"{command} is {search_in_path(command)[1]}\n")
             elif ans.startswith("echo"):
                 print(ans[4:])
             else:
