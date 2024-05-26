@@ -25,18 +25,20 @@ def main():
         if ans := input().strip():
             if ans == "exit 0":
                 sys.exit(0)
-            elif "type" in ans:
-                if "nonexistent" in ans:
-                    print(f"{ans[4:]} not found")
-                elif ans[4:] in built:
-                    print(f"{ans} is a shell builtin")
-                else:
-                    command_path = find_command_in_path(ans[4:])
-                    print(f"{ans[4:]} is {command_path}")
+            if ans[4:] in built:
+                sys.stdout.write(f"{ans[4:]} is a shell builtin\n")
             elif "echo" in ans:
                 print(f"{ans[4:]}")
             else:
-                print(f"{ans}: command not found")
+                print(f"{ans[4:]}: command not found")
+                paths = os.getenv("PATH").split(":")
+                for path in paths:
+                    if os.path.exists(f"{path}/{ans[4:]}"):
+                        sys.stdout.write(f"{ans[4:]} is {path}/{ans[4:]}\n")
+                        sys.stdout.flush()
+                        return
+                else:
+                    print(f"{ans[4:]}: command not found")
 
 
 
