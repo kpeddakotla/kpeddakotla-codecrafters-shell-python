@@ -21,9 +21,6 @@ def main():
         if ans := input().strip():
             if ans == "exit 0":
                 sys.exit(0)
-            elif ans.find("inv"):
-                command = ans[4:].strip()
-                print(f"{command} not found")
             elif ans.startswith("type"):
                 command = ans[4:].strip()
                 if command in built:
@@ -38,6 +35,7 @@ def main():
                 command_args = ans.split(" ")
                 if os.path.exists(f"{ans[0]}"):
                     os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
+                print(f"{command_args[0]}: command not found")
 
 
 
