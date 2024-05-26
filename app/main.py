@@ -36,7 +36,7 @@ def main():
                 if os.path.exists(f"{ans[0]}"):
                     os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
                 else:
-                    print(f"{command_args[0]}: command not")
+                    print(f"{command_args[0]}: command not found")
 
 
 
