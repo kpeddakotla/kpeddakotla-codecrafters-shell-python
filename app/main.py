@@ -34,8 +34,10 @@ def main():
             elif ans.startswith("echo"):
                 print(ans[4:])
             else:
+                found = False
                 command_args = ans.split(" ")
-                if os.path.exists(f"{command[0]}"):
+
+                if os.path.exists(f"{ans[0]}"):
                     os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
                     found = True
                 if not found:
