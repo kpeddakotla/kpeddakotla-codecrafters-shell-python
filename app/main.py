@@ -43,7 +43,8 @@ def main():
                 if not found:
                     sys.stdout.flush()
                     command = ans[4:].strip()
-                    output = f"{command}: command not found\n"
+                    output = f"{command}: command not found"
+                    output += "\n"
                     sys.stdout.write(output)
                     continue
 
