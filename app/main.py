@@ -15,7 +15,7 @@ def main():
     
     built = ["echo", "exit", "type"]
     while True:
-        sys.stdout.write("$ ")
+        sys.stdout.write("\n$ ")
         sys.stdout.flush()
 
         if ans := input().strip():
@@ -44,7 +44,6 @@ def main():
                     sys.stdout.flush()
                     command = ans[4:].strip()
                     output = f"{command}: command not found"
-                    output += "\n"
                     sys.stdout.write(output)
                     continue
 
