@@ -41,12 +41,8 @@ def main():
                     os.system(f"{command_args[0]} {' '.join(command_args[1:])}")
                     found = True
                 if not found:
-                    sys.stdout.flush()
                     command = ans[4:].strip()
-                    output = f"{command}: command not found" + os.linesep
-                    sys.stdout.write(output)
-                    continue
-
+                    sys.stdout.write(f"{command}: command not found\n")
 
 if __name__ == "__main__":
     main()
